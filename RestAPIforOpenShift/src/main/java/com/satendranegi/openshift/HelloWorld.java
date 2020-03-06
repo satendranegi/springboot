@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
 public class HelloWorld {
 
-	@GetMapping(value = "/hello")
+	@RequestMapping("hello")
 	public ResponseEntity<String> helloworld(){
 		
 		return new ResponseEntity<String>("hello world from openshift",HttpStatus.OK);
