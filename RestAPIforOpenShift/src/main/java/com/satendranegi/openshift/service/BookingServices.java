@@ -21,4 +21,6 @@ public class BookingServices {
 		System.out.println("Created booking succesfully...");
 		return "Successfully saved";
 	}
+	
+	
 }

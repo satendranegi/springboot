@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satendranegi.openshift.model.BookingRequest;
@@ -18,6 +20,9 @@ public class HelloWorld {
 	
 	@Autowired
 	private BookingServices bookingservices;
+	
+	@Autowired
+	private BookingRepository bookingrequest;
 	
 	@RequestMapping("hello")
 	public ResponseEntity<String> helloworld(){
@@ -32,8 +37,11 @@ public class HelloWorld {
 		return bookingservices.createBooking(request);
 	}
 	
-	
-	
+	@GetMapping(path = "/allbookings")
+	public @ResponseBody Iterable<BookingRequest> getAllBookings(){
+		System.out.println("Providing all the bookings....");
+		return bookingrequest.findAll();
+	}
 	
 	
 	
