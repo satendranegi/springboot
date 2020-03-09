@@ -43,6 +43,17 @@ public class HelloWorld {
 		return bookingrequest.findAll();
 	}
 	
+	@GetMapping(path = "/removeall")
+	public String removeAll() {
+		
+		System.out.println("deleting all the records from table");
+		bookingrequest.deleteAll();
+		System.out.println("deleting all the records from table==> Done");
+		return "Success";
+	}
+	
+	
+	
 	
 	
 }
