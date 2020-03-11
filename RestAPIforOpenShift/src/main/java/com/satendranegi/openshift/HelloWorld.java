@@ -57,11 +57,9 @@ public class HelloWorld {
 	
 	@GetMapping("bookings/{id}")
 	public @ResponseBody Optional<BookingRequest> getBookingById(@PathVariable("id") long id){
-		
+		System.out.println("Fetching data for..."+id);
 		return bookingrequest.findById(id);
 		
 	}
-	
-	
 	
 }
