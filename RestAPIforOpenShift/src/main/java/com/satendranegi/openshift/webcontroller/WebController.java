@@ -1,5 +1,7 @@
 package com.satendranegi.openshift.webcontroller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,5 +17,10 @@ public class WebController {
 		
 		return "homepage";
 	}
+	
+	 @GetMapping("/")
+	    String index(Principal principal) {
+	        return principal != null ? "homepage" : "homepage";
+	    }
 	
 }
