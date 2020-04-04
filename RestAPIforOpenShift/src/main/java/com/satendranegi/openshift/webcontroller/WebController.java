@@ -22,5 +22,10 @@ public class WebController {
 	    String index(Principal principal) {
 	        return principal != null ? "index" : "index.html";
 	    }
+	 
+	 @GetMapping("/login")
+	    String login(Principal principal) {
+	        return principal != null ? "index" : "login.html";
+	    }
 	
 }
