@@ -25,7 +25,7 @@ public class WebController {
 	 
 	 @GetMapping("/login")
 	    String login(Principal principal) {
-	        return principal != null ? "index" : "login.html";
+	        return principal != null ? "index" : "loginv1.html";
 	    }
 	
 }
