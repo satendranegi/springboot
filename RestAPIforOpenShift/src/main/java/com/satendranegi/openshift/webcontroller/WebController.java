@@ -20,7 +20,7 @@ public class WebController {
 	
 	 @GetMapping("/")
 	    String index(Principal principal) {
-	        return principal != null ? "homepage" : "index.html";
+	        return principal != null ? "index" : "index.html";
 	    }
 	
 }
