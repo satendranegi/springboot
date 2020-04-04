@@ -15,7 +15,7 @@ public class WebController {
 		
 		model.addAttribute("name",name);
 		
-		return "homepage";
+		return "index.html";
 	}
 	
 	 @GetMapping("/")
