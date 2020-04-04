@@ -33,7 +33,9 @@ public class WebController {
 	    String index(Principal principal) {
 		 
 		 SiteStats siteStats = new SiteStats();
+		 if(request!=null)
 		 siteStats.setIpAddress(request.getHeader("X-FORWARDED-FOR"));
+		 siteStats.setIpAddress("2.2.2.2.2.2");
 		 System.out.println("Request ..."+siteStats.toString());
 		 sitestatsrepo.save(siteStats);
 		 
