@@ -2,14 +2,21 @@ package com.satendranegi.openshift.webcontroller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.satendranegi.openshift.model.SiteStats;
+import com.satendranegi.openshift.repository.SiteStatsRepository;
+
 @Controller
 public class WebController {
 
+	@Autowired
+	SiteStatsRepository sitestatsrepo;
+	
 	@GetMapping("/homepage")
 	public String HomePage(@RequestParam(name = "name",required = false,defaultValue = "World") String name,Model model) {
 		
@@ -20,6 +27,11 @@ public class WebController {
 	
 	 @GetMapping("/")
 	    String index(Principal principal) {
+		 
+		 SiteStats siteStats = new SiteStats();
+		 siteStats.setIpAddress("1.1.1.1.2");
+		 sitestatsrepo.save(siteStats);
+		 
 	        return principal != null ? "index" : "index.html";
 	    }
 	 

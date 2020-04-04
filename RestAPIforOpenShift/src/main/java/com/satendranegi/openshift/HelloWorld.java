@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.satendranegi.openshift.model.BookingRequest;
 import com.satendranegi.openshift.repository.BookingRepository;
+import com.satendranegi.openshift.repository.SiteStatsRepository;
 import com.satendranegi.openshift.service.BookingServices;
 
 import reactor.core.publisher.Mono;
@@ -28,6 +29,9 @@ public class HelloWorld  {
 	
 	@Autowired
 	private BookingRepository bookingrequest;
+	
+	@Autowired
+	private SiteStatsRepository sitestatsrepo;
 	
 	@RequestMapping("hello")
 	public ResponseEntity<String> helloworld(){
@@ -61,6 +65,12 @@ public class HelloWorld  {
 	public @ResponseBody Optional<BookingRequest> getBookingById(@PathVariable("id") long id){
 		System.out.println("Fetching data for..."+id);
 		return bookingrequest.findById(id);
+		
+	}
+	
+	@GetMapping("/getsitestats")
+	public @ResponseBody long getSiteStats() {
+		return sitestatsrepo.count();
 		
 	}
 	
