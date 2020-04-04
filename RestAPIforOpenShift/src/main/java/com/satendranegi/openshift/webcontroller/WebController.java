@@ -36,11 +36,11 @@ public class WebController {
 	    String index(Principal principal) {
 		 
 		 SiteStats siteStats = new SiteStats();
-		 Map<String, String> getHttpHeaders = getRequestHeadersInMap(request);
-		 String clientIp = getHttpHeaders.get("x-forwarded-for");
+		 //Map<String, String> getHttpHeaders = getRequestHeadersInMap(request);
+		 //String clientIp = getHttpHeaders.get("x-forwarded-for");
 		 //if(request!=null)
 		 //siteStats.setIpAddress(request.getHeader("X-FORWARDED-FOR"));
-		 siteStats.setIpAddress(clientIp);
+		 siteStats.setIpAddress("clientIp");
 		 System.out.println("Request ..."+siteStats.toString());
 		 sitestatsrepo.save(siteStats);
 		 
