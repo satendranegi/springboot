@@ -70,6 +70,7 @@ public class HelloWorld  {
 	
 	@GetMapping("/getsitestats")
 	public @ResponseBody long getSiteStats() {
+		System.out.println("Returning site stats ......");
 		return sitestatsrepo.count();
 		
 	}
