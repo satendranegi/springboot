@@ -1,6 +1,9 @@
 package com.satendranegi.openshift.webcontroller;
 
 import java.security.Principal;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,9 +36,11 @@ public class WebController {
 	    String index(Principal principal) {
 		 
 		 SiteStats siteStats = new SiteStats();
-		 if(request!=null)
-		 siteStats.setIpAddress(request.getHeader("X-FORWARDED-FOR"));
-		 siteStats.setIpAddress("2.2.2.2.2.2");
+		 Map<String, String> getHttpHeaders = getRequestHeadersInMap(request);
+		 String clientIp = getHttpHeaders.get("x-forwarded-for");
+		 //if(request!=null)
+		 //siteStats.setIpAddress(request.getHeader("X-FORWARDED-FOR"));
+		 siteStats.setIpAddress(clientIp);
 		 System.out.println("Request ..."+siteStats.toString());
 		 sitestatsrepo.save(siteStats);
 		 
@@ -47,5 +52,21 @@ public class WebController {
 	    String login(Principal principal) {
 	        return principal != null ? "index" : "login.html";
 	    }
+	 
+	 
+	 private Map<String, String> getRequestHeadersInMap(HttpServletRequest request) {
+
+	        Map<String, String> result = new HashMap<>();
+
+	        Enumeration headerNames = request.getHeaderNames();
+	        while (headerNames.hasMoreElements()) {
+	            String key = (String) headerNames.nextElement();
+	            String value = request.getHeader(key);
+	            result.put(key, value);
+	        }
+
+	        return result;
+	    }
+	 
 	
 }
