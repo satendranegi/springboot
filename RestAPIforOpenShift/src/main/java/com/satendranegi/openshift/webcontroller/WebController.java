@@ -2,6 +2,8 @@ package com.satendranegi.openshift.webcontroller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ public class WebController {
 	@Autowired
 	SiteStatsRepository sitestatsrepo;
 	
+	private HttpServletRequest request;
+	
 	@GetMapping("/homepage")
 	public String HomePage(@RequestParam(name = "name",required = false,defaultValue = "World") String name,Model model) {
 		
@@ -29,8 +33,10 @@ public class WebController {
 	    String index(Principal principal) {
 		 
 		 SiteStats siteStats = new SiteStats();
-		 siteStats.setIpAddress("1.1.1.1.2");
+		 siteStats.setIpAddress(request.getHeader("X-FORWARDED-FOR"));
+		 System.out.println("Request ..."+siteStats.toString());
 		 sitestatsrepo.save(siteStats);
+		 
 		 
 	        return principal != null ? "index" : "index.html";
 	    }

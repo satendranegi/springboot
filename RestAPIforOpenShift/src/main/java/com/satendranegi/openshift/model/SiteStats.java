@@ -30,4 +30,9 @@ public class SiteStats {
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
+
+	@Override
+	public String toString() {
+		return "SiteStats [id=" + id + ", visitor=" + visitor + ", ipAddress=" + ipAddress + "]";
+	}
 }
