@@ -17,18 +17,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity httpsecurity) throws Exception {
 		
-		httpsecurity
-		.authorizeRequests()
-		.antMatchers("/").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.loginPage("/login")
-		.permitAll()
-		.and()
-		.logout()
-		.permitAll();
-		
+		/*
+		 * httpsecurity .authorizeRequests() //.antMatchers("/").permitAll()
+		 * .anyRequest().authenticated() .and() .formLogin() .loginPage("/login")
+		 * .permitAll() .and() .logout() .permitAll();
+		 */
 		
 	}
 	
