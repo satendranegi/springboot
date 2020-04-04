@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,10 @@ import com.satendranegi.openshift.model.BookingRequest;
 import com.satendranegi.openshift.repository.BookingRepository;
 import com.satendranegi.openshift.service.BookingServices;
 
+import reactor.core.publisher.Mono;
+
 @RestController
-public class HelloWorld {
+public class HelloWorld  {
 	
 	@Autowired
 	private BookingServices bookingservices;
@@ -59,6 +62,16 @@ public class HelloWorld {
 		System.out.println("Fetching data for..."+id);
 		return bookingrequest.findById(id);
 		
+	}
+	
+	
+	//Reactive controller
+	
+	@PostMapping
+	public Mono<ResponseEntity<String>> createBookingReactive(@RequestBody BookingRequest request){
+		return null;
+		
+		//return bookingrequest.save(request);
 	}
 	
 }
