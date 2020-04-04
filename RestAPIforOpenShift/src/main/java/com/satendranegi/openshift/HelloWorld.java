@@ -1,5 +1,6 @@
 package com.satendranegi.openshift;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satendranegi.openshift.model.BookingRequest;
+import com.satendranegi.openshift.model.SiteStats;
 import com.satendranegi.openshift.repository.BookingRepository;
 import com.satendranegi.openshift.repository.SiteStatsRepository;
 import com.satendranegi.openshift.service.BookingServices;
@@ -77,6 +79,11 @@ public class HelloWorld  {
 		
 	}
 	
+	@GetMapping("/getallstats")
+	public @ResponseBody List<SiteStats> getAllStats(){
+		
+		return sitestatsrepo.findAll();
+	}
 	
 	//Reactive controller
 	
