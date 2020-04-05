@@ -8,16 +8,28 @@ app.controller('Hello', function($scope, $http) {
 
 app.controller('Contact', function ($scope, $rootScope, $http) {
 	console.log("inside contact for js");
-    $scope.formData = {};
+	 $scope.form = {
+             fullName : "",
+             emailId : "",
+             mobileNumber : "",
+             message : ""
+         };
+	 
     $scope.contact = function () {
-        $http.post('/contact', $scope.formData).then(
-            function (resposne) {
-                console.log("registered");
-                console.log(response);
-            },
-            function (response) {
-                console.log("Register error")
+    	console.log("inside the function...data"+$scope.form.fullName)
+    	$http({
+            method : "POST",
+            url : "http://localhost:8080/contact",
+            data : angular.toJson($scope.form),
+            headers : {
+                'Content-Type' : 'application/json'
             }
-        )
-      }
+        }).then(
+        		function successCallback(response) {
+        	        console.log("Successfully POST-ed data");
+        		, function errorCallback(response) {
+        	        console.log("POST-ing of data failed");
+        	      } );
+      }    
+    
 });
