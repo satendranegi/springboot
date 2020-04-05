@@ -98,7 +98,7 @@ public class HelloWorld  {
 		
 		//return bookingrequest.save(request);
 	}
-	
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping(value = "/contact",method = RequestMethod.POST)
 	public String saveContact(@RequestBody Contact contact) {
 		contactrepository.save(contact);
