@@ -1,11 +1,13 @@
-angular.module('demo', [])
-.controller('Hello', function($scope, $http) {
+var app = angular.module('demo', [])
+app.controller('Hello', function($scope, $http) {
     $http.get('http://www.satendranegi.com/getsitestats').
         then(function(response) {
             $scope.greeting = response.data;
         });
 });
-.controller('contact', function ($scope, $rootScope, $http) {
+
+app.controller('Contact', function ($scope, $rootScope, $http) {
+	console.log("inside contact for js");
     $scope.formData = {};
     $scope.contact = function () {
         $http.post('/contact', $scope.formData).then(
