@@ -8,7 +8,14 @@ app.controller('Hello', function($scope, $http) {
 
 app.controller('Contact', function ($scope, $rootScope, $http) {
 	console.log("inside contact for js");
-    $scope.formData = {};
+    $scope.formData = {	
+    		
+    		"fullName":$scope.fullName,
+    		"emailId":$scope.emailId,
+    		"mobileNumber":$scope.mobileNumber,
+    		"message":$scope.message
+    };
+    console.log("form data..."+$scope.formData)
     $scope.contact = function () {
         $http.post('/contact', $scope.formData).then(
             function (resposne) {
