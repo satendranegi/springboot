@@ -19,17 +19,15 @@ app.controller('Contact', function ($scope, $rootScope, $http) {
     	console.log("inside the function...data"+$scope.form.fullName)
     	$http({
             method : "POST",
-            url : "http://localhost:8080/contact",
+            url : "/contact",
             data : angular.toJson($scope.form),
             headers : {
                 'Content-Type' : 'application/json'
             }
-        }).then(
-        		function successCallback(response) {
-        	        console.log("Successfully POST-ed data");
-        		, function errorCallback(response) {
-        	        console.log("POST-ing of data failed");
-        	      } );
+        }).then(function(response){
+        	$scope.postresponse=response.data;
+        	console.log("response from post..."+$scope.postresponse)
+        });
       }    
     
 });
