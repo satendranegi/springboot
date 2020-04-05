@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satendranegi.openshift.model.BookingRequest;
+import com.satendranegi.openshift.model.Contact;
 import com.satendranegi.openshift.model.SiteStats;
 import com.satendranegi.openshift.repository.BookingRepository;
+import com.satendranegi.openshift.repository.ContactRepository;
 import com.satendranegi.openshift.repository.SiteStatsRepository;
 import com.satendranegi.openshift.service.BookingServices;
 
@@ -35,6 +37,9 @@ public class HelloWorld  {
 	
 	@Autowired
 	private SiteStatsRepository sitestatsrepo;
+	
+	@Autowired
+	private ContactRepository contactrepository;
 	
 	@RequestMapping("hello")
 	public ResponseEntity<String> helloworld(){
@@ -93,5 +98,13 @@ public class HelloWorld  {
 		
 		//return bookingrequest.save(request);
 	}
+	
+	@RequestMapping(value = "/contact",method = RequestMethod.POST)
+	public String saveContact(@RequestBody Contact contact) {
+		contactrepository.save(contact);
+		
+		return "success";
+	}
+	
 	
 }
