@@ -1,6 +1,6 @@
 var app = angular.module('demo', [])
 app.controller('Hello', function($scope, $http) {
-    $http.get('http://www.satendranegi.com/getsitestats').
+    $http.get('/getsitestats').
         then(function(response) {
             $scope.greeting = response.data;
         });

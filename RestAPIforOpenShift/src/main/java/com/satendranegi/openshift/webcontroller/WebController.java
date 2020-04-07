@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.satendranegi.openshift.model.SiteStats;
 import com.satendranegi.openshift.repository.SiteStatsRepository;
+import com.satendranegi.openshift.utils.SendEmails;
 
 @Controller
 public class WebController {
@@ -43,7 +44,8 @@ public class WebController {
 		 siteStats.setIpAddress("clientIp");
 		 System.out.println("Request ..."+siteStats.toString());
 		 sitestatsrepo.save(siteStats);
-		 
+		 //SendEmails sendmail = new SendEmails();
+		 //sendmail.sendEmail("message");
 		 
 	        return principal != null ? "index" : "index.html";
 	    }
