@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.satendranegi.openshift.model.BookingRequest;
 import com.satendranegi.openshift.model.Contact;
+import com.satendranegi.openshift.model.Posts;
 import com.satendranegi.openshift.model.SiteStats;
 import com.satendranegi.openshift.repository.BookingRepository;
 import com.satendranegi.openshift.repository.ContactRepository;
+import com.satendranegi.openshift.repository.PostsRepository;
 import com.satendranegi.openshift.repository.SiteStatsRepository;
 import com.satendranegi.openshift.service.BookingServices;
 
@@ -40,6 +42,9 @@ public class HelloWorld  {
 	
 	@Autowired
 	private ContactRepository contactrepository;
+	
+	@Autowired
+	private PostsRepository postrepository;
 	
 	@RequestMapping("hello")
 	public ResponseEntity<String> helloworld(){
@@ -113,5 +118,19 @@ public class HelloWorld  {
 		
 	}
 	
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@RequestMapping(value = "/createpost",method = RequestMethod.POST)
+	public String createPost(@RequestBody Posts post) {
+		postrepository.save(post);
+		
+		return "success";
+	}
+	
+	@GetMapping("/getposts")
+	public @ResponseBody List<Posts> getPosts() {
+		
+		return postrepository.findAll();
+		
+	}
 	
 }
