@@ -110,8 +110,8 @@ public class HelloWorld  {
 		
 		return "success";
 	}
-	
-	@GetMapping("/getcontacts")
+	@RequestMapping(value = "/getcontacts",method = RequestMethod.GET,produces = "application/json")
+	//@GetMapping("/getcontacts")
 	public @ResponseBody List<Contact> getContacts() {
 		
 		return contactrepository.findAll();
