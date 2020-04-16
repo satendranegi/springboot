@@ -126,7 +126,7 @@ public class HelloWorld  {
 		return "success";
 	}
 	
-	@GetMapping("/getposts")
+	@RequestMapping(value = "/getposts",method = RequestMethod.GET,produces = "application/json")
 	public @ResponseBody List<Posts> getPosts() {
 		
 		return postrepository.findAll();
